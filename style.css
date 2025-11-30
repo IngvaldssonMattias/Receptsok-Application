@@ -1,0 +1,249 @@
+:root {
+  --primary: #007bff;
+  --secondary: #f8f9fa;
+  --text: #212529;
+  --accent: #ff6b35;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background-color: var(--secondary);
+  line-height: 1.6;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px 0 20px;
+  color: var(--primary);
+  font-size: 2.8rem;
+}
+
+.tophargin {
+  margin-top: 8px;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.welcome-card {
+  margin: 20px auto 40px;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.welcome-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.big-search-form {
+  display: flex;
+  height: 72px;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  border: 4px solid var(--accent);
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+.big-search-form:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px rgba(255, 107, 53, 0.25);
+  border-color: #e55a2b;
+}
+
+.big-search-form input {
+  flex: 1;
+  border: none;
+  padding: 0 32px;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.big-search-form input::placeholder {
+  color: #888;
+}
+
+.big-search-btn {
+  background: linear-gradient(135deg, var(--accent), #f97316);
+  color: white;
+  border: none;
+  padding: 0 44px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.big-search-btn:hover {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  transform: scale(1.04);
+}
+
+.big-search-btn svg {
+  stroke-width: 3;
+}
+
+#results {
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+#results,
+#favorites {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 28px;
+  padding: 0 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.card button,
+#closeModal {
+  margin-top: 12px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card button:hover,
+#closeModal:hover {
+  filter: brightness(0.92);
+}
+
+#favoriteHeader {
+  text-align: center;
+  margin: 80px 0 20px;
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+#favoriteDivider {
+  border: 1px solid #ddd;
+  margin: 10px auto 50px;
+  width: 80%;
+  max-width: 600px;
+}
+
+dialog {
+  max-width: 660px;
+  width: 90%;
+  margin: auto;
+  padding: 2rem;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.25);
+  max-height: 85vh;
+  overflow: auto;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+#modalContent {
+  white-space: pre-line;
+  line-height: 1.7;
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
+
+#loading {
+  text-align: center;
+  padding: 40px;
+  font-style: italic;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0.0.0);
+  white-space: novrap;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.3rem;
+    margin-top: 30px;
+  }
+  .big-search-form {
+    height: 62px;
+    margin-bottom: 60px;
+  }
+  .big-search-form input {
+    font-size: 1.05rem;
+    padding: 0 20px;
+  }
+  .big-search-btn {
+    padding: 0 28px;
+    font-size: 1rem;
+  }
+  #results,
+  #favorites {
+    gap: 20px;
+  }
+  #results {
+    margin-top: 20px;
+  }
+}

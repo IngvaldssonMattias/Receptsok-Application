@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Recept - Sökningsapp</title>
+  </head>
+  <body>
+    <header>
+      <h1>Receptsök</h1>
+    </header>
+
+    <main>
+      <div class="container">
+        <div id="welcome" class="welcome-card">
+          <img
+            src="https://www.shutterstock.com/image-photo/serving-gourmet-
+             dish-elegant-presentation-260nw-2551401467.jpg"
+            alt="Välkomnande måltid"
+            class="welcome-image"
+          />
+
+          <p>
+            Hungrig? Sök på vad du har hemma eller vad du är sugen på - här
+            dyker tusentals goda recept up på sekunden!
+          </p>
+          <p class="highlight topHargin">
+            skriv t.ex "rice", "pie" eller "cake"
+          </p>
+        </div>
+
+        <form
+          id="searchInput"
+          class="big-search-form"
+          aria-label="sök efter recept"
+        >
+          <label for="searchInput" class="visually-hidden">Sök recept</label>
+          <input
+            type="text"
+            id="searchInput"
+            name="q"
+            placeholder="Vad är du sugen på idag?"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" class="big-search-btn">
+            <svg
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.8"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            Sök recept
+          </button>
+        </form>
+      </div>
+
+      <div id="loading" aria-live="polite" hidden>Laddar recept ...</div>
+      <section id="results" aria-label="Sökresultat"></section>
+
+      <h2 id="favoriteHeader" hidden>Favoriter</h2>
+      <hr id="favoritesDivider" hidden />
+      <section id="favorites" aria-label="Favoriter"></section>
+
+      <dialog id="modal" aria-modal="true">
+        <h2 id="modalTitle"></h2>
+        <div id="modalContent"></div>
+        <button id="closeModal">Stäng</button>
+      </dialog>
+    </main>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
