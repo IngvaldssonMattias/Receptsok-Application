@@ -1,37 +1,39 @@
-import { Recipe } from '../models/recipe.js'
+// Importerar Recipe-klassen som används för att skapa receptobjekt
+import { Recipe } from 'models/Recipe.js';
 
 /**
-* Service för API-anrop till TheMealDB.
-* @module
-encodeURIComponent gör query säker för URL:en, och async/await väntar snyggt på fetch.
-Om API:et misslyckas fångar vi felet, vilket håller appen stabil. Nu har vi data – dags att visa
-den!
-Etapp 4: Komponenter för DOM-Manipulation – Göra Appen
-Levande
-Här ger vi appen liv genom att dynamiskt skapa element i DOM:en baserat på data. Detta
-handlar om interaktivitet (färdighetsmål 1 och 2), med eventhantering för klick (kunskapsmål 1).
-Komponenter som recipeCard är återanvändbara moduler, vilket håller koden ren (kunskapsmål
-3). Vi lägger till ARIA för tillgänglighet och lazy-loading för prestanda.
-I js/components/recipeCard.js skapar vi en funktion som bygger ett kort med knappar för
-detaljer och favoriter.
-*/
-/**
-* Hämtar recept baserat på sökterm.
-* @param {string} query - Sökterm.
-* @returns {Promise<Array<Recipe>>} - Lista med recept.
-*/
+ * Söker efter recept baserat på en sökterm (query).
+ * Hämtar data från TheMealDB API och returnerar en lista av Recipe-objekt.
+ * @param {string} query - Söksträng från användaren
+ * @returns {Promise<Array<Recipe>>} Lista av recept (kan vara tom)
+ */
+export async function searchRecipes(query) {
 
+    // Säkerställer att användaren faktiskt skrev något
+    if (!query) throw new Error('Sökterm krävs');
 
-export async function searchRecipes (query) {
-    if (!query) throw new Error('Sökterm krävs'); // Validering (säkerhet)
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`; // Sanitera input mot XSS
+    // API-länken, med söktermen korrekt kodad för URL
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(query)}`;
+
     try {
+        // Hämtar API-data
         const response = await fetch(url);
-        if(!response.ok) throw new Error('API-fel');
+
+        // Kastar eget fel om API-anropet misslyckades (t.ex. 404, 500)
+        if (!response.ok) throw new Error('API-fel');
+
+        // Tolkar svaret som JSON
         const data = await response.json();
-        return data.meals ? data.meals.map(meal => new Recipe(meal)): [];
+
+        // Om API:t hittar recept → gör om varje objekt till en Recipe-instans
+        // Om inga recept hittas → returnera tom array
+        return data.meals ? data.meals.map(meal => new Recipe(meal)) : [];
+
     } catch (error) {
+        // Loggar eventuella fel i konsolen (bra för utvecklare/debugging)
         console.error(error);
-        throw error; // För vidarehantering
-        }
+
+        // Skickar vidare felet så andra delar av appen kan hantera det
+        throw error;
     }
+}

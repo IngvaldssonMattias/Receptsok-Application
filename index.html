@@ -3,37 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receptsök-App</title>
     <link rel="stylesheet" href="style.css" />
-    <title>Recept - Sökningsapp</title>
   </head>
   <body>
     <header>
       <h1>Receptsök</h1>
     </header>
-
     <main>
       <div class="container">
         <div id="welcome" class="welcome-card">
           <img
-            src="https://www.shutterstock.com/image-photo/serving-gourmet-
-             dish-elegant-presentation-260nw-2551401467.jpg"
+            src="https://www.shutterstock.com/image-photo/serving-gourmetdish-elegant-presentation-260nw-2551401467.jpg"
             alt="Välkomnande måltid"
             class="welcome-image"
           />
-
           <p>
-            Hungrig? Sök på vad du har hemma eller vad du är sugen på - här
-            dyker tusentals goda recept up på sekunden!
+            Hungrig? Sök på vad du har hemma eller vad du är sugen på – här
+            dyker tusentals goda recept upp på sekunden!
           </p>
-          <p class="highlight topHargin">
-            skriv t.ex "rice", "pie" eller "cake"
+          <p class="highlight topMargin">
+            Skriv t.ex. "rice", "pie" eller "cake"
           </p>
         </div>
-
+        
         <form
-          id="searchInput"
+          id="searchForm"
           class="big-search-form"
-          aria-label="sök efter recept"
+          aria-label="Sök efter
+recept"
         >
           <label for="searchInput" class="visually-hidden">Sök recept</label>
           <input
@@ -60,14 +58,11 @@
           </button>
         </form>
       </div>
-
-      <div id="loading" aria-live="polite" hidden>Laddar recept ...</div>
+      <div id="loading" aria-live="polite" hidden>Laddar recept...</div>
       <section id="results" aria-label="Sökresultat"></section>
-
-      <h2 id="favoriteHeader" hidden>Favoriter</h2>
+      <h2 id="favoritesHeader" hidden>Favoriter</h2>
       <hr id="favoritesDivider" hidden />
       <section id="favorites" aria-label="Favoriter"></section>
-
       <dialog id="modal" aria-modal="true">
         <h2 id="modalTitle"></h2>
         <div id="modalContent"></div>
